@@ -162,24 +162,224 @@ JavaScript Tests:
         pm.expect(responseData.error).to.exist.and.to.be.a('string');
     });
 
+Token generation
 
+HTTP method for request: POST
 
+Request description: Generate new token
 
-.............
-
-**Nume Request n**
-HTTP method for request: Inserati aici metoda HTTP a requestului
-Request description: Inserati o scurta descriere a requestului, conform documentatiei de API
-Test types / techniques used: Inserati tipurile si tehnicile de testare folosite pentru acest request
-Response status code: Inserati aici status code-ul pe care l-ati obtinut in urma executiei requestului
+Response status code" 201 Created
 
 Below you can find a picture of the API request from Postman:
+<img width="628" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/97ba0877-c4c3-4a31-86e6-c5add9c806aa">
 
-Inserati aici o poza cu requestul din postman in care sa se observe request method, endpoint, request body si response body
+
+
 
 JavaScript Tests:
 
-Inserati aici o poza cu testele in java script pe care le-ati definit impreuna cu rezultatele executiei acestora
+
+    pm.test("Response status code is 201", function () {
+        pm.expect(pm.response.code).to.equal(201);
+    });
+
+
+    pm.test("Response has the required field - accessToken", function () {
+      const responseData = pm.response.json();
+  
+      pm.expect(responseData).to.be.an('object');
+      pm.expect(responseData.accessToken).to.exist.and.to.be.a('string');
+    });
+
+
+    pm.test("Access token should not be empty", function () {
+      const responseData = pm.response.json();
+      pm.expect(responseData.accessToken).to.exist.and.to.not.be.empty;
+    });
+
+
+    pm.test("Content-Type is application/json", function () {
+        pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+    });
+
+
+    pm.test("Response time is less than 500ms", function () {
+      pm.expect(pm.response.responseTime).to.be.below(500);
+    });
+
+Submit orders
+
+HTTP method for request: POST
+
+Request description: Submit orders
+
+Response status code 201 Created
+
+Below you can find a picture of the API request from Postman:
+
+<img width="631" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/e54a1d9a-a232-42f0-8352-a14323adc6ee">
+
+
+
+JavaScript Tests:
+
+
+    pm.test("Response status code is 201", function () {
+        pm.expect(pm.response.code).to.equal(201);
+    });
+
+
+    pm.test("Response has the required fields - created and orderId", function () {
+        const responseData = pm.response.json();
+        
+        pm.expect(responseData).to.be.an('object');
+        pm.expect(responseData).to.have.property('created');
+        pm.expect(responseData).to.have.property('orderId');
+    });
+
+
+    pm.test("OrderId is a non-empty string", function () {
+      const responseData = pm.response.json();
+  
+      pm.expect(responseData.orderId).to.be.a('string').and.to.have.lengthOf.at.least(1, "OrderId should not be empty");
+    });
+
+
+    pm.test("Content-Type header is application/json", function () {
+        pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+    });
+
+
+    pm.test("Created field is set to true", function () {
+        const responseData = pm.response.json();
+    
+        pm.expect(responseData).to.be.an('object');
+        pm.expect(responseData.created).to.equal(true);
+    });
+
+
+
+    
+
+Get Orders
+
+HTTP method for request: GET
+
+Request description: Get Orders with Id:b8nIMcctaxBsr9B17x2r-.22
+
+Response status code: 404 Not found
+
+Below you can find a picture of the API request from Postman:
+<img width="636" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/9dac7292-cb7f-4d6a-b2d6-80417c202dfd">
+
+
+
+JavaScript Tests:
+
+    pm.test("Response returns error", function () {
+       pm.expect(pm.response.text()).to.include("error");
+    });
+
+    var responseData = pm.response.json()
+    pm.test("Response returns correct error message", function ()
+    {pm.expect(responseData.error).to.eql("No order with id b8nIMcctaxBsr9B17x2r-.22.");});
+
+    pm.test("Check that the status code of the request is the correct one",() =>{
+       pm.response.to.have.status(404)})
+
+
+
+Update order
+
+HTTP method for request: Patch
+
+Request description: Update order with customer name 111
+
+Response status code 404 Not found
+
+Below you can find a picture of the API request from Postman:
+<img width="632" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/08f04bbc-6bf4-4219-b240-99ddc5529d89">
+
+
+
+JavaScript Tests:
+
+    pm.test("Response status code is 404", function () {
+      pm.expect(pm.response.code).to.equal(404);
+    });
+
+
+    pm.test("Response has the required field 'error'", function () {
+        const responseData = pm.response.json();
+    
+        pm.expect(responseData).to.be.an('object');
+    …        const orderId = pm.request.url.getPath().match(/orders\/([A-Za-z0-9-]+)/)[1];
+        pm.expect(orderId).to.match(/[A-Za-z0-9-]+/);
+    });
+
+
+
+Delete order
+
+HTTP method for request: DEL
+
+Request description: Delete Order with inexistent ID
+
+Response status code 404  Not found
+
+Below you can find a picture of the API request from Postman:
+<img width="631" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/f735c7b7-4903-426b-94d5-513b739ffd80">
+
+
+
+JavaScript Tests:
+
+
+pm.test("Response status code is 404", function () {
+  pm.expect(pm.response.code).to.equal(404);
+});
+
+
+pm.test("Response has content type application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+…    
+    pm.expect(responseData).to.be.an('object');
+    pm.expect(responseData.error).to.exist;
+});
+
+
+
+
+Update status negativ testing
+
+HTTP method for request: Patch
+
+Request description: update status  negative testing
+
+Response status code
+
+Below you can find a picture of the API request from Postman:
+
+<img width="846" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/35fb0ca9-d47b-4c51-914b-735bb5f3b833">
+
+
+
+
+Get bookId with inexistent Id
+
+HTTP method for request: GET
+
+Request description: Get book with id 16
+
+Response status code 404 Not found
+
+Below you can find a picture of the API request from Postman:
+<img width="623" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/87dec815-32af-4e39-80aa-25f3b9005263">
+
+
+
+
 
 Execution report for the created API collection
 Below you can find the execution report that was generated through the Postman collection runner.
