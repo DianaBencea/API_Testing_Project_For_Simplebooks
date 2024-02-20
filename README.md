@@ -28,8 +28,7 @@ Below you can find a picture of the API request from Postman:
 JavaScript Tests:
 
 
-
-pm.test("Response status code is 200", function () {
+    pm.test("Response status code is 200", function () {
         pm.expect(pm.response.code).to.equal(200);
     });
 
