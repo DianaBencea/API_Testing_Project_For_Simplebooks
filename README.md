@@ -392,7 +392,58 @@ The collection was also run through newman directly from the terminal, and the r
 
 Inserati aici o poza cu raportul de executie din Newman
 
-Defects found
-The following issues were identified while running the postman tests:
+Simple books API
 
-**Inserati aici fie un fisier pdf care sa contina raportarea tuturor bug-urilor, fie le descrieti direct in git Bug-urile trebuie sa contina titlu, preconditii, pasi de executie, rezultate asteptate si rezultate actuale. Optional, bug-urile pot fi raportate in jira, si apoi puteti pune poze direct din jira
+→ Status
+  GET https://simple-books-api.glitch.me/status [200 OK, 226B, 602ms]
+
+→ Get all books
+  GET https://simple-books-api.glitch.me/books [200 OK, 631B, 147ms]
+
+→ Get bookId 1
+  GET https://simple-books-api.glitch.me/books/1 [200 OK, 374B, 250ms]
+
+→ Create order without authentication
+  POST https://simple-books-api.glitch.me/orders [401 Unauthorized, 263B, 151ms]
+
+→ Token generation
+  POST https://simple-books-api.glitch.me/api-clients/ [409 Conflict, 283B, 154ms]
+
+→ Submit orders
+  POST https://simple-books-api.glitch.me/orders [401 Unauthorized, 255B, 156ms]
+
+→ Get orders
+  GET https://simple-books-api.glitch.me/orders [401 Unauthorized, 250B, 148ms]
+
+→ Update order
+  PATCH https://simple-books-api.glitch.me/orders/Lyl2clCpqTQ99t2ocXXP- [401 Unauthorized, 255B, 406ms]
+
+→ Delete order
+  DELETE https://simple-books-api.glitch.me/orders/Lyl2clCpqTQ99t2ocXXP- [401 Unauthorized, 255B, 154ms]
+
+→ Update status negative testing
+  PATCH https://simple-books-api.glitch.me/books/2 [404 Not Found, 397B, 241ms]
+
+→ Get bookId with inexistent id
+  GET https://simple-books-api.glitch.me/books/10 [404 Not Found, 249B, 148ms]
+
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                  11 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   0 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   0 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                   0 │                  0 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 3.4s                                           │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 1.01kB (approx)                               │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 232ms [min: 147ms, max: 602ms, s.d.: 139ms] │
+└────────────────────────────────────────────────────────────────────┘
+
