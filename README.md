@@ -21,7 +21,8 @@ Response status code
 
 Below you can find a picture of the API request from Postman:
 
-Inserati aici o poza cu requestul din postman in care sa se observe request method, endpoint, request body si response body
+<img width="638" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/0a505d4b-15be-4b42-a048-5fad2079448d">
+
 
 JavaScript Tests:
 
