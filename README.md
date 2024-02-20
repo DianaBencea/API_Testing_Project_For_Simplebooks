@@ -31,6 +31,7 @@ JavaScript Tests:
 pm.test("Check that the status code is correct", function (){
 
 pm.response.to.have.status(200);
+
 });
 
 
