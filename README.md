@@ -9,10 +9,15 @@ Collection link: https://web.postman.co/workspace/43cf1499-e222-4974-8d4c-989572
 
 Tests performed
 GET Status
+
 HTTP method for request:(https://simple-books-api.glitch.me/status)
+
 Request description: Check that the status code is correct
-Test types / techniques used: Inserati tipurile si tehnicile de testare folosite pentru acest request
-Response status code: Inserati aici status code-ul pe care l-ati obtinut in urma executiei requestului
+
+Response status code
+:{
+    "status": "OK"
+}
 
 Below you can find a picture of the API request from Postman:
 
