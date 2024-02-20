@@ -7,6 +7,7 @@ Tools used: Postman, Newman
 
 Collection link: https://web.postman.co/workspace/43cf1499-e222-4974-8d4c-989572e44abd/documentation/32285997-5fd8347a-80b8-4044-968c-6894b5634a46
 
+
 Tests performed
 GET Status
 
@@ -28,6 +29,7 @@ JavaScript Tests:
 
  
 pm.test("Check that the status code is correct", function () 
+
 { pm.response.to.have.status(200);});
 
 
