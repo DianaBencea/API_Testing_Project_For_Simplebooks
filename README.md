@@ -27,13 +27,18 @@ Below you can find a picture of the API request from Postman:
 
 JavaScript Tests:
 
- 
-pm.test("Check that the status code is correct", function (){
 
-pm.response.to.have.status(200);
 
-});
+pm.test("Response status code is 200", function () {
+        pm.expect(pm.response.code).to.equal(200);
+    });
 
+
+    pm.test("Response has the required fields", function () {
+        const responseData = pm.response.json();
+    
+        pm.expect(responseData).to.be.an('object');
+    …
 
 
 
@@ -53,7 +58,7 @@ Below you can find a picture of the API request from Postman:
 
 JavaScript Tests:
 
-pm.test("Check that the first results in the list are correct ", function () {
+    pm.test("Check that the first results in the list are correct ", function () {
   
     var data = pm.response.json();
  
@@ -62,7 +67,7 @@ pm.test("Check that the first results in the list are correct ", function () {
     pm.expect(data[0].type).to.eql("fiction");
    
     pm.expect(data[0].available).to.be.true
-});
+    });
 
 Get all book
 
@@ -81,32 +86,32 @@ Below you can find a picture of the API request from Postman:
 JavaScript Tests:
 
 
-pm.test("Response status code is 200", function () {
+    pm.test("Response status code is 200", function () {
     pm.response.to.have.status(200);
-});
-
-pm.test("Response has valid Content-Type header of application/json", function () {
-    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
-});
-
-pm.test("Name is a non-empty string", function () {
-  const responseData = pm.response.json();
-  
-  pm.expect(responseData).to.be.an('array');
-  responseData.forEach(function(book) {
-    pm.expect(book.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Name should not be empty");
-  });
-});
-
-pm.test("Type is a non-empty string", function () {
-    const responseData = pm.response.json();
-    
-    pm.expect(responseData).to.be.an('array');
-    responseData.forEach(function(book) {
-        pm.expect(book.type).to.be.a('string');
-        pm.expect(book.type).to.have.lengthOf.at.least(1, "Type should not be empty");
     });
-});
+
+    pm.test("Response has valid Content-Type header of application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+    });
+
+    pm.test("Name is a non-empty string", function () {
+      const responseData = pm.response.json();
+  
+      pm.expect(responseData).to.be.an('array');
+      responseData.forEach(function(book) {
+        pm.expect(book.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Name should not be empty");
+      });
+    });
+    
+    pm.test("Type is a non-empty string", function () {
+        const responseData = pm.response.json();
+    
+        pm.expect(responseData).to.be.an('array');
+        responseData.forEach(function(book) {
+            pm.expect(book.type).to.be.a('string');
+            pm.expect(book.type).to.have.lengthOf.at.least(1, "Type should not be empty");
+        });
+    });
 
 
 .............
