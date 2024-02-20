@@ -113,6 +113,58 @@ JavaScript Tests:
     });
 
 
+Create order without authentication
+
+HTTP method for request: POST
+
+Request description: Create order without authentication
+
+Response status code: 401
+
+Below you can find a picture of the API request from Postman:
+
+<img width="632" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/943dbd57-06a8-4154-9398-68c26c59fcee">
+
+
+
+JavaScript Tests:
+
+
+    pm.test("Response status code is 401", function () {
+        pm.expect(pm.response.code).to.equal(401);
+    });
+
+
+    pm.test("Response has the required 'error' field", function () {
+      const responseData = pm.response.json();
+      pm.expect(responseData).to.be.an('object');
+      pm.expect(responseData.error).to.exist;
+    });
+
+
+    pm.test("Error field is a non-empty string", function () {
+      const responseData = pm.response.json();
+
+      pm.expect(responseData).to.be.an('object');
+      pm.expect(responseData.error).to.be.a('string').and.to.have.lengthOf.at.least(1, "Error field should not be empty");
+    });
+
+
+    pm.test("Content type is application/json", function () {
+      pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+    });
+
+
+    pm.test("Verify response does not contain sensitive information", function () {
+        const responseData = pm.response.json();
+    
+        pm.expect(responseData).to.be.an('object');
+        pm.expect(responseData.error).to.exist.and.to.be.a('string');
+    });
+
+
+
+
 .............
 
 **Nume Request n**
