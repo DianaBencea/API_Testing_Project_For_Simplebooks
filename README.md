@@ -28,9 +28,9 @@ Below you can find a picture of the API request from Postman:
 JavaScript Tests:
 
  
-pm.test("Check that the status code is correct", function () 
-
-{ pm.response.to.have.status(200);});
+pm.test("Check that the status code is correct", function (){
+pm.response.to.have.status(200);
+});
 
 
 
