@@ -64,6 +64,54 @@ pm.test("Check that the first results in the list are correct ", function () {
     pm.expect(data[0].available).to.be.true
 });
 
+Get all book
+
+HTTP method for request: GET
+
+Request description: See all books
+
+Response status code: 200 ok
+
+Below you can find a picture of the API request from Postman:
+<img width="1049" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/70104794-52d2-404d-8bfd-12f38a2bb77b">
+
+
+
+
+JavaScript Tests:
+
+
+pm.test("Response status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+
+pm.test("Response has valid Content-Type header of application/json", function () {
+    pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
+});
+
+
+pm.test("Name is a non-empty string", function () {
+  const responseData = pm.response.json();
+  
+  pm.expect(responseData).to.be.an('array');
+  responseData.forEach(function(book) {
+    pm.expect(book.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Name should not be empty");
+  });
+});
+
+
+pm.test("Type is a non-empty string", function () {
+    const responseData = pm.response.json();
+    
+    pm.expect(responseData).to.be.an('array');
+    responseData.forEach(function(book) {
+        pm.expect(book.type).to.be.a('string');
+        pm.expect(book.type).to.have.lengthOf.at.least(1, "Type should not be empty");
+    });
+});
+
+
 .............
 
 **Nume Request n**
