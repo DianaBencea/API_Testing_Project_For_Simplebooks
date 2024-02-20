@@ -390,7 +390,7 @@ Below you can find the execution report that was generated through the Postman c
 
 The collection was also run through newman directly from the terminal, and the results can be found below:
 
-Inserati aici o poza cu raportul de executie din Newman
+
 
 Simple books API
 
@@ -427,23 +427,5 @@ Simple books API
 → Get bookId with inexistent id
   GET https://simple-books-api.glitch.me/books/10 [404 Not Found, 249B, 148ms]
 
-┌─────────────────────────┬─────────────────────┬────────────────────┐
-│                         │            executed │             failed │
-├─────────────────────────┼─────────────────────┼────────────────────┤
-│              iterations │                   1 │                  0 │
-├─────────────────────────┼─────────────────────┼────────────────────┤
-│                requests │                  11 │                  0 │
-├─────────────────────────┼─────────────────────┼────────────────────┤
-│            test-scripts │                   0 │                  0 │
-├─────────────────────────┼─────────────────────┼────────────────────┤
-│      prerequest-scripts │                   0 │                  0 │
-├─────────────────────────┼─────────────────────┼────────────────────┤
-│              assertions │                   0 │                  0 │
-├─────────────────────────┴─────────────────────┴────────────────────┤
-│ total run duration: 3.4s                                           │
-├────────────────────────────────────────────────────────────────────┤
-│ total data received: 1.01kB (approx)                               │
-├────────────────────────────────────────────────────────────────────┤
-│ average response time: 232ms [min: 147ms, max: 602ms, s.d.: 139ms] │
-└────────────────────────────────────────────────────────────────────┘
+  <img width="484" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/77fde349-fab3-4c1a-b261-76224039880f">
 
