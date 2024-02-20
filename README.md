@@ -10,7 +10,7 @@ Collection link: https://web.postman.co/workspace/43cf1499-e222-4974-8d4c-989572
 Tests performed
 GET Status
 
-HTTP method for request:(https://simple-books-api.glitch.me/status)
+HTTP method for request: GET
 
 Request description: Check that the status code is correct
 
@@ -26,25 +26,30 @@ Below you can find a picture of the API request from Postman:
 
 JavaScript Tests:
 
-Inserati aici o poza cu testele in java script pe care le-ati definit impreuna cu rezultatele executiei acestora
+ 
+pm.test("Check that the status code is correct", function () 
+{ pm.response.to.have.status(200);});
 
-<img width="1055" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/7418556b-696b-4f76-a33e-d7889ed6cf80">
 
 
-**Nume Request 2**
-HTTP method for request: Inserati aici metoda HTTP a requestului
-Request description: Inserati o scurta descriere a requestului, conform documentatiei de API
-Test types / techniques used: Inserati tipurile si tehnicile de testare folosite pentru acest request
+Get book Id 1
+HTTP method for request: GET
+Request description: See all book with Id1
+
 Response status code: 200 ok
 
 Below you can find a picture of the API request from Postman:
 
-Inserati aici o poza cu requestul din postman in care sa se observe request method, endpoint, request body si response body
+<img width="626" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/8db7252d-5a30-4036-bbe5-d007228c2086">
 
 
 JavaScript Tests:
-
-Inserati aici o poza cu testele in java script pe care le-ati definit impreuna cu rezultatele executiei acestora
+pm.test("Check that the first results in the list are correct ", function () {
+    var data = pm.response.json();
+    pm.expect(data[0].name).to.eql("The Russian");
+    pm.expect(data[0].type).to.eql("fiction");
+    pm.expect(data[0].available).to.be.true
+});
 
 .............
 
