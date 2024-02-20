@@ -32,8 +32,11 @@ pm.test("Check that the status code is correct", function ()
 
 
 
+
 Get book Id 1
+
 HTTP method for request: GET
+
 Request description: See all book with Id1
 
 Response status code: 200 ok
@@ -43,11 +46,17 @@ Below you can find a picture of the API request from Postman:
 <img width="626" alt="image" src="https://github.com/DianaBencea/API_Testing_Project_For_Simplebooks/assets/151565785/8db7252d-5a30-4036-bbe5-d007228c2086">
 
 
+
 JavaScript Tests:
+
 pm.test("Check that the first results in the list are correct ", function () {
+  
     var data = pm.response.json();
+ 
     pm.expect(data[0].name).to.eql("The Russian");
+  
     pm.expect(data[0].type).to.eql("fiction");
+   
     pm.expect(data[0].available).to.be.true
 });
 
