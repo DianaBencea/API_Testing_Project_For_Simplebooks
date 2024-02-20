@@ -85,11 +85,9 @@ pm.test("Response status code is 200", function () {
     pm.response.to.have.status(200);
 });
 
-
 pm.test("Response has valid Content-Type header of application/json", function () {
     pm.expect(pm.response.headers.get("Content-Type")).to.include("application/json");
 });
-
 
 pm.test("Name is a non-empty string", function () {
   const responseData = pm.response.json();
@@ -99,7 +97,6 @@ pm.test("Name is a non-empty string", function () {
     pm.expect(book.name).to.be.a('string').and.to.have.lengthOf.at.least(1, "Name should not be empty");
   });
 });
-
 
 pm.test("Type is a non-empty string", function () {
     const responseData = pm.response.json();
